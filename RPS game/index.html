@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors - Ultimate Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Animated Background Particles -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- Loading Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1 class="splash-title">✊✋✌️</h1>
+            <h2 class="splash-subtitle">Rock Paper Scissors</h2>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" id="darkModeToggle">
+        <span class="icon">🌙</span>
+    </button>
+
+    <!-- Main Container -->
+    <div class="container" id="mainContainer">
+        
+        <!-- Home Screen -->
+        <div class="screen active" id="homeScreen">
+            <div class="logo-container">
+                <h1 class="game-title">✊✋✌️</h1>
+                <h2 class="game-subtitle">Rock Paper Scissors</h2>
+                <p class="game-tagline">Choose Your Battle Mode</p>
+            </div>
+            
+            <div class="mode-selection">
+                <div class="mode-card" id="onePlayerBtn">
+                    <div class="mode-icon">🤖</div>
+                    <h3>One Player</h3>
+                    <p>Challenge the AI</p>
+                </div>
+                
+                <div class="mode-card" id="twoPlayerBtn">
+                    <div class="mode-icon">👥</div>
+                    <h3>Two Players</h3>
+                    <p>Play with a friend</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- One Player Game Screen -->
+        <div class="screen" id="onePlayerScreen">
+            <div class="game-header">
+                <button class="back-btn" id="backFromOne">← Back</button>
+                <h2 class="mode-title">VS Computer</h2>
+                <button class="reset-btn" id="resetOne">Reset</button>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score-item player">
+                    <span class="score-label">You</span>
+                    <span class="score-value" id="playerScore">0</span>
+                    <span class="streak" id="playerStreak"></span>
+                </div>
+                <div class="score-divider">:</div>
+                <div class="score-item computer">
+                    <span class="score-label">AI</span>
+                    <span class="score-value" id="computerScore">0</span>
+                    <span class="streak" id="computerStreak"></span>
+                </div>
+            </div>
+
+            <div class="battle-area">
+                <div class="choice-display">
+                    <div class="player-choice">
+                        <div class="choice-icon" id="playerChoiceIcon">?</div>
+                        <p>Your Choice</p>
+                    </div>
+                    <div class="vs-text">VS</div>
+                    <div class="computer-choice">
+                        <div class="choice-icon" id="computerChoiceIcon">?</div>
+                        <p>AI Choice</p>
+                    </div>
+                </div>
+
+                <div class="result-message" id="resultMessage"></div>
+            </div>
+
+            <div class="choices">
+                <button class="choice-btn" data-choice="rock">
+                    <span class="choice-emoji">✊</span>
+                    <span class="choice-name">Rock</span>
+                </button>
+                <button class="choice-btn" data-choice="paper">
+                    <span class="choice-emoji">✋</span>
+                    <span class="choice-name">Paper</span>
+                </button>
+                <button class="choice-btn" data-choice="scissors">
+                    <span class="choice-emoji">✌️</span>
+                    <span class="choice-name">Scissors</span>
+                </button>
+            </div>
+
+            <div class="history-panel">
+                <h3>Round History</h3>
+                <div class="history-list" id="historyList"></div>
+            </div>
+        </div>
+
+        <!-- Two Player Game Screen -->
+        <div class="screen" id="twoPlayerScreen">
+            <div class="game-header">
+                <button class="back-btn" id="backFromTwo">← Back</button>
+                <h2 class="mode-title">Two Players</h2>
+                <button class="reset-btn" id="resetTwo">Reset</button>
+            </div>
+
+            <div class="scoreboard">
+                <div class="score-item player1">
+                    <span class="score-label">Player 1</span>
+                    <span class="score-value" id="player1Score">0</span>
+                    <span class="streak" id="player1Streak"></span>
+                </div>
+                <div class="score-divider">:</div>
+                <div class="score-item player2">
+                    <span class="score-label">Player 2</span>
+                    <span class="score-value" id="player2Score">0</span>
+                    <span class="streak" id="player2Streak"></span>
+                </div>
+            </div>
+
+            <div class="two-player-status" id="twoPlayerStatus">
+                <h3>Player 1's Turn</h3>
+                <p>Make your choice secretly</p>
+            </div>
+
+            <div class="battle-area hidden" id="twoPlayerBattle">
+                <div class="choice-display">
+                    <div class="player-choice">
+                        <div class="choice-icon" id="player1ChoiceIcon">?</div>
+                        <p>Player 1</p>
+                    </div>
+                    <div class="vs-text">VS</div>
+                    <div class="computer-choice">
+                        <div class="choice-icon" id="player2ChoiceIcon">?</div>
+                        <p>Player 2</p>
+                    </div>
+                </div>
+
+                <div class="result-message" id="twoPlayerResult"></div>
+                <button class="next-round-btn" id="nextRoundBtn">Next Round</button>
+            </div>
+
+            <div class="choices" id="twoPlayerChoices">
+                <button class="choice-btn" data-choice="rock">
+                    <span class="choice-emoji">✊</span>
+                    <span class="choice-name">Rock</span>
+                </button>
+                <button class="choice-btn" data-choice="paper">
+                    <span class="choice-emoji">✋</span>
+                    <span class="choice-name">Paper</span>
+                </button>
+                <button class="choice-btn" data-choice="scissors">
+                    <span class="choice-emoji">✌️</span>
+                    <span class="choice-name">Scissors</span>
+                </button>
+            </div>
+
+            <div class="history-panel">
+                <h3>Round History</h3>
+                <div class="history-list" id="twoPlayerHistoryList"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Confetti Container -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
